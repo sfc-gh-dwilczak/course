@@ -11,7 +11,7 @@ import cv2
 sio = socketio.Server()
  
 app = Flask(__name__) #'__main__'
-speed_limit = 30
+speed_limit = 10
 def img_preprocess(img):
     img = img[60:135,:,:]
     img = cv2.cvtColor(img, cv2.COLOR_RGB2YUV)
@@ -29,7 +29,7 @@ def telemetry(sid, data):
     image = img_preprocess(image)
     image = np.array([image])
     steering_angle = float(model.predict(image))
-    throttle = 30
+    throttle = 10
     print('{} {} {}'.format(steering_angle, throttle, speed))
     send_control(steering_angle, throttle)
  
@@ -48,6 +48,6 @@ def send_control(steering_angle, throttle):
  
  
 if __name__ == '__main__':
-    model = load_model('modelv3.keras')
+    model = load_model('modelv4.keras')
     app = socketio.Middleware(sio, app)
     eventlet.wsgi.server(eventlet.listen(('', 4567)), app)
