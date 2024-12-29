@@ -1,0 +1,9 @@
+opencv-python
+flask
+python-socketio==4.6.1
+eventlet
+tensorflow
+keras
+pillow
+numpy
+python-engineio==3.13.2
